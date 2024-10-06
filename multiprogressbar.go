@@ -1,8 +1,6 @@
-// Provides a multi-instance interface to schollz's progressbar library
 package multiprogressbar
 
 import (
-	"bufio"
 	"fmt"
 	"io"
 	"os"
@@ -16,7 +14,7 @@ type MultiProgressBar struct {
 	curLine int
 	bars    []*progressbar.ProgressBar
 	guard   sync.Mutex
-	output  *bufio.Writer
+	output  io.Writer
 }
 
 // New creates a new MultiProgressBar with default options.
@@ -30,7 +28,7 @@ func NewOptions(options ...Option) *MultiProgressBar {
 		curLine: 0,
 		bars:    []*progressbar.ProgressBar{},
 		guard:   sync.Mutex{},
-		output:  bufio.NewWriter(os.Stdout),
+		output:  os.Stdout,
 	}
 	for _, opt := range options {
 		opt(mpb)
@@ -89,10 +87,7 @@ func (mpb *MultiProgressBar) Finish() error {
 // Not thread safe.
 func (mpb *MultiProgressBar) End() error {
 	_, err := mpb.move(len(mpb.bars), mpb.output)
-	if err != nil {
-		return err
-	}
-	return mpb.output.Flush()
+	return err
 }
 
 // move moves the cursor to the beginning of the current progress bar.
@@ -116,7 +111,7 @@ type Option func(p *MultiProgressBar)
 // Behavior is undefined if called while using the MultiProgressBar.
 func OptionSetWriter(writer io.Writer) Option {
 	return func(mpb *MultiProgressBar) {
-		mpb.output = bufio.NewWriter(writer)
+		mpb.output = writer
 	}
 }
 
