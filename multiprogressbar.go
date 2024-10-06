@@ -1,3 +1,4 @@
+// Provides a multi-instance interface to schollz's progressbar library
 package multiprogressbar
 
 import (
