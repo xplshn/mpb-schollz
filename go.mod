@@ -1,4 +1,4 @@
-module github.com/IceflowRE/go-multiprogressbar
+module github.com/xplshn/mpb-scholz
 
 go 1.19
 
