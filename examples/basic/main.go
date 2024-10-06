@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/xplshn/mpb-scholz"
+	"github.com/xplshn/mpb-schollz"
 	"github.com/schollz/progressbar/v3"
 	"time"
 )
