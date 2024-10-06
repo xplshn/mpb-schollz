@@ -1,5 +1,5 @@
 # Go Multi Progress Bar
-![experiment](https://img.shields.io/badge/status-exprimental-yellow.svg)
+![experimental](https://img.shields.io/badge/status-experimental-yellow.svg)
 ![Programming Language](https://img.shields.io/badge/language-Go-orange.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/IceflowRE/go-multiprogressbar/blob/master/LICENSE.md)
 
@@ -16,7 +16,7 @@ The API might introduce breaking changes from commit to commit for now.
 
 ## Why another multi progress bar?
 
-Iam aware of the working and tested multi progress bars out there. Use them if you want a battle-tested library.
+I am aware of the working and tested multi progress bars out there. Use them if you want a battle-tested library.
 
 I am using `schollz/progressbar` heavily, because it is simple and covers all my cases, except multiple progress bars.
 
@@ -47,27 +47,38 @@ import "github.com/IceflowRE/go-multiprogressbar"
 ### Basic usage
 
 ```go
-// create a new multi progressbar with default output to os.Stdout
-mpb := multiprogressbar.New()
-// add progressbars
-for _, pBar := range []*progressbar.ProgressBar{
-    progressbar.New(150),
-    progressbar.New(200),
-    progressbar.New(250),
-} {
-    mpb.Add(pBar)
-}
+package main
 
-for val := 0; val < 300; val++ {
-    time.Sleep(10 * time.Millisecond)
-    barId := val % 3
-    mpb.Get(barId).Add(1)
+import (
+	"time"
+
+	"github.com/IceflowRE/go-multiprogressbar"
+	"github.com/schollz/progressbar/v3"
+)
+
+func main() {
+	// create a new multi progressbar with default output to os.Stdout
+	mpb := multiprogressbar.New()
+	// add progressbars
+	for _, pBar := range []*progressbar.ProgressBar{
+		progressbar.New(150),
+		progressbar.New(200),
+		progressbar.New(250),
+	} {
+		mpb.Add(pBar)
+	}
+
+	for val := 0; val < 300; val++ {
+		time.Sleep(10 * time.Millisecond)
+		barId := val % 3
+		mpb.Get(barId).Add(1)
+	}
 }
 ```
 
 ## Contributing
 
-Every contribution and talk about the structure and organization of the project are always welcome.
+Every contribution and discussion about the structure and organization of the project are always welcome.
 
 Commit titles must follow this pattern `[<category>] <Good Description>` e.g. `[gen] Fix file permissions`.
 
@@ -77,7 +88,7 @@ Nothing to see here.
 
 ## Thanks
 
-A huge thanks to [@schollz](https://github.com/schollz) for this simple and still highly configurable progressbar library!
+A huge thanks to [@schollz](https://github.com/schollz) for this simple and still highly configurable progress bar library!
 
 ## MIT License
 
