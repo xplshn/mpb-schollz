@@ -1,4 +1,4 @@
-module github.com/xplshn/mpb-scholz
+module github.com/xplshn/mpb-schollz
 
 go 1.22
 
