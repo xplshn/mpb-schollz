@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/IceflowRE/go-multiprogressbar"
+	"github.com/xplshn/mpb-scholz"
 	"github.com/schollz/progressbar/v3"
 	"time"
 )
